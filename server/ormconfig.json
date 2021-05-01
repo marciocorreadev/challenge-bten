@@ -1,0 +1,65 @@
+[
+   {
+      "name": "prod",
+      "type": "postgres",
+      "host": "localhost",
+      "port": 5432,
+      "username": "root",
+      "password": "root",
+      "database": "database",
+      "synchronize": true,
+      "logging": false,
+      "entities": [
+         "./dist/models/**.ts"
+      ],
+      "migrations": [
+         "./dist/database/migrations/**.ts"
+      ],
+      "cli": {
+         "entitiesDir": "src/models",
+         "migrationsDir": "src/database/migrations"
+      }
+   },
+   {
+      "name": "dev",
+      "type": "postgres",
+      "host": "postgres",
+      "port": 5432,
+      "username": "root",
+      "password": "root",
+      "database": "database",
+      "synchronize": true,
+      "logging": false,
+      "entities": [
+         "./src/models/**.ts"
+      ],
+      "migrations": [
+         "./src/database/migrations/**.ts"
+      ],
+      "cli": {
+         "entitiesDir": "src/models",
+         "migrationsDir": "src/database/migrations"
+      }
+   },
+   {
+      "name": "test",
+      "type": "postgres",
+      "host": "localhost",
+      "port": 5444,
+      "username": "root",
+      "password": "root",
+      "database": "database_test",
+      "synchronize": true,
+      "logging": false,
+      "entities": [
+         "./src/models/**.ts"
+      ],
+      "migrations": [
+         "./src/database/migrations/**.ts"
+      ],
+      "cli": {
+         "entitiesDir": "src/models",
+         "migrationsDir": "src/database/migrations"
+      }
+   }
+]

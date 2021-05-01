@@ -1,0 +1,30 @@
+version: '3.9'
+services:
+  postgres:
+    image: "postgres:9.6.1"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DB: "database"
+  postgres-test:
+    image: "postgres:9.6.1"
+    ports:
+      - "5444:5432"
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DB: "database_test"
+  app:
+    image: node:latest
+    ports:
+      - "3000:3000"
+    environment:
+      DOCKER: 'true'
+    working_dir: "/home/node/app"
+    volumes:
+      - .:/home/node/app
+    command: bash -c "yarn install && yarn start:dev"
+    links:
+      - "postgres:database"
