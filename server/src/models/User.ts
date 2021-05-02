@@ -1,9 +1,10 @@
 import {
-  Entity, Column, CreateDateColumn, PrimaryColumn, UpdateDateColumn,
+  Entity, Column, CreateDateColumn, PrimaryColumn, UpdateDateColumn, Unique,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
 @Entity('users')
+@Unique(['email'])
 export default class User {
   @PrimaryColumn()
   readonly id: string;
@@ -16,6 +17,12 @@ export default class User {
 
   @Column('varchar')
   name: string;
+
+  @Column('varchar')
+  email: string;
+
+  @Column('varchar')
+  password: string;
 
   @Column('double precision')
   height: number;
