@@ -4,6 +4,8 @@ import User from '@models/User';
 function userValidate(user: User) {
   return yup.object().shape({
     name: yup.string().required(),
+    email: yup.string().email().required(),
+    password: yup.string().required(),
     homeTeam: yup.string().required(),
     age: yup.date().required(),
     height: yup.string().required(),
