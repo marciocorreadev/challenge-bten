@@ -4,6 +4,6 @@ export default class AppError {
 
     constructor(message: string, statusCode = 400) {
         this.message = message
-        this.statusCode = statusCode
+        this.statusCode = JSON.stringify(message).includes('ValidationError') ? 400 : statusCode
     }
 }
