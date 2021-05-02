@@ -13,7 +13,7 @@ export default class UserController {
         data, count: data.length, limit, skip, total,
       });
     } catch (error) {
-      throw new AppError(error.message, 500);
+      throw new AppError(response, error.message, 500);
     }
   }
 
@@ -26,7 +26,7 @@ export default class UserController {
 
       return response.status(200).json(user);
     } catch (error) {
-      throw new AppError(error.message, 500);
+      throw new AppError(response, error.message, 500);
     }
   }
 
@@ -34,14 +34,17 @@ export default class UserController {
     try {
       await userValidate(user);
     } catch (error) {
-      throw new AppError(error.message, 400);
+      throw new AppError(response, error.message, 400);
     }
 
     try {
+      const studentAlreadyExists = await UserService.findOne(user.email);
+      if (studentAlreadyExists) return response.status(400).json({ message: 'Student alteady exists!', email: user.email });
+
       const createUser = <User> await UserService.addUser(user);
       return response.status(201).json(createUser);
     } catch (error) {
-      throw new AppError(error.message, 500);
+      throw new AppError(response, error.message, 500);
     }
   }
 
@@ -61,18 +64,18 @@ export default class UserController {
       const updatedUser: User = await UserService.getUser(id);
       return response.status(200).json(updatedUser);
     } catch (error) {
-      throw new AppError(error.message);
+      throw new AppError(response, error.message);
     }
   }
 
-  async deleteUser({ params: { id } }: Request, resposne: Response) {
+  async deleteUser({ params: { id } }: Request, response: Response) {
     try {
-      if (!id) return resposne.status(400).json({ error: 'UserId is missing' });
+      if (!id) return response.status(400).json({ error: 'UserId is missing' });
 
       const deleteResult: DeleteResult = await UserService.deleteUser(id);
-      return resposne.status(200).json(deleteResult);
+      return response.status(200).json(deleteResult);
     } catch (error) {
-      throw new AppError(error.message, 500);
+      throw new AppError(response, error.message, 500);
     }
   }
 }
