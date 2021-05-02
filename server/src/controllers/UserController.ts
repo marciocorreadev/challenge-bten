@@ -4,6 +4,7 @@ import UserService from '@services/UserService';
 import { userValidate } from '@validators';
 import { Request, Response } from 'express';
 import { DeleteResult, UpdateResult } from 'typeorm';
+import * as jwt from 'jsonwebtoken';
 
 export default class UserController {
   static async getUsers({ query: { limit = '10', skip = '0', keyword = '' } }: Request, response: Response) {
@@ -42,7 +43,9 @@ export default class UserController {
       if (studentAlreadyExists) return response.status(400).json({ message: 'Student alteady exists!', email: user.email });
 
       const createUser = <User> await UserService.addUser(user);
-      return response.status(201).json(createUser);
+      const token = jwt.sign({ id: user.id }, process.env.APP_SECRET, { expiresIn: '1y' });
+
+      return response.status(201).json({ ...createUser, token });
     } catch (error) {
       throw new AppError(response, error.message, 500);
     }

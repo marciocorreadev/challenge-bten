@@ -6,7 +6,7 @@ export default class AppError {
 
     constructor(resposne:Response, message: string, statusCode = 400) {
       this.message = message;
-      this.statusCode = JSON.stringify(message).includes('ValidationError') ? 400 : statusCode;
+      this.statusCode = statusCode;
 
       resposne.status(this.statusCode).json({ error: this.message });
     }

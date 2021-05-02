@@ -16,6 +16,7 @@ const user = {
 describe('Users', () => {
   let userCreated: User;
   let connection: Connection;
+  let token: String;
 
   beforeAll(async () => {
     connection = await createConnection();
@@ -26,6 +27,7 @@ describe('Users', () => {
     const response = await request(app).post('/user').send(user);
     expect(response.status).toBe(201);
     userCreated = response.body;
+    token = response.body.token;
     expect(userCreated.name).toBe(user.name);
     expect(userCreated.email).toBe(user.email);
     expect(userCreated.homeTeam).toBe(user.homeTeam);
@@ -33,7 +35,7 @@ describe('Users', () => {
   });
 
   it('Should be able to get a user by ID', async () => {
-    const response = await request(app).get(`/user/${userCreated.id}`);
+    const response = await request(app).get(`/user/${userCreated.id}`).set('authorization', `Barear ${token}`);
     expect(response.status).toBe(200);
     expect(response.body.name).toBe(userCreated.name);
     expect(userCreated.email).toBe(user.email);
@@ -42,7 +44,7 @@ describe('Users', () => {
   });
 
   it('Should be able to get all users', async () => {
-    const response = await request(app).get('/user');
+    const response = await request(app).get('/user').set('authorization', `Barear ${token}`);
     expect(response.status).toBe(200);
     expect(response.body.data.length).toBeGreaterThan(0);
     expect(true).toBe(
@@ -52,7 +54,7 @@ describe('Users', () => {
 
   it('Should be able to update a user', async () => {
     const updateUser = { name: 'Márcio Corrêa' };
-    const response = await request(app).put(`/user/${userCreated.id}`).send(updateUser);
+    const response = await request(app).put(`/user/${userCreated.id}`).send(updateUser).set('authorization', `Barear ${token}`);
     expect(response.status).toBe(200);
     expect(response.body.name).toBe(updateUser.name);
     expect(userCreated.email).toBe(user.email);
@@ -61,7 +63,7 @@ describe('Users', () => {
   });
 
   it('Should be able to remove a user', async () => {
-    const response = await request(app).delete(`/user/${userCreated.id}`);
+    const response = await request(app).delete(`/user/${userCreated.id}`).set('authorization', `Barear ${token}`);
     expect(response.status).toBe(200);
     expect(response.body.affected).toBe(1);
   });

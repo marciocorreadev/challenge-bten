@@ -6,7 +6,7 @@
     "start:db": "docker-compose -f docker-compose-only-db.yml up",
     "dev": "docker-compose up",
     "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
-    "test": "NODE_ENV=test PORT=3333 jest -i --forceExit",
+    "test": "NODE_ENV=test PORT=3333 jest --forceExit",
     "typeorm": "tsnd node_modules/typeorm/cli.js"
   },
   "dependencies": {

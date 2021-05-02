@@ -10,6 +10,11 @@ export default class AuthController {
   static async login({ body: { email, password } }: Request, response: Response) {
     try {
       await loginValidate({ email, password } as User);
+    } catch (error) {
+      throw new AppError(response, error.message, 400);
+    }
+
+    try {
       const user = await UserService.findOne(email);
       if (!user || !(await bcrypt.compare(password, user.password))) return response.status(404).json({ message: 'User does not exist' });
 
