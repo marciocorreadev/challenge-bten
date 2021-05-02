@@ -6,7 +6,7 @@ import { Request, Response } from 'express';
 import { DeleteResult, UpdateResult } from 'typeorm';
 
 export default class UserController {
-  async getUsers({ query: { limit = '10', skip = '0', keyword = '' } }: Request, response: Response) {
+  static async getUsers({ query: { limit = '10', skip = '0', keyword = '' } }: Request, response: Response) {
     try {
       const [data, total] = await UserService.getUsers(Number(skip), Number(limit), String(keyword));
       return response.status(200).json({
@@ -17,7 +17,7 @@ export default class UserController {
     }
   }
 
-  async getUser({ params: { id } }: Request, response: Response) {
+  static async getUser({ params: { id } }: Request, response: Response) {
     try {
       if (!id) return response.status(400).json({ error: 'UserId is missing' });
 
@@ -30,7 +30,7 @@ export default class UserController {
     }
   }
 
-  async addUser({ body: user }: Request, response: Response) {
+  static async addUser({ body: user }: Request, response: Response) {
     try {
       await userValidate(user);
     } catch (error) {
@@ -48,7 +48,7 @@ export default class UserController {
     }
   }
 
-  async updateUser({ body, params: { id } }: Request, response: Response) {
+  static async updateUser({ body, params: { id } }: Request, response: Response) {
     try {
       if (!id) return response.status(400).json({ error: 'UserId is missing' });
 
@@ -68,7 +68,7 @@ export default class UserController {
     }
   }
 
-  async deleteUser({ params: { id } }: Request, response: Response) {
+  static async deleteUser({ params: { id } }: Request, response: Response) {
     try {
       if (!id) return response.status(400).json({ error: 'UserId is missing' });
 

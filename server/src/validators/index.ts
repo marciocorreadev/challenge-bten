@@ -12,4 +12,11 @@ function userValidate(user: User) {
   }).validate(user, { abortEarly: false });
 }
 
-export { userValidate };
+function loginValidate(user: User) {
+  return yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().required(),
+  }).validate(user, { abortEarly: false });
+}
+
+export { userValidate, loginValidate };

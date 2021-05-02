@@ -32,6 +32,7 @@
         "no-return-await": "off",
         "no-control-regex": "off",
         "no-restricted-syntax": "off",
+        "consistent-return": "off",
         "no-await-in-loop": "off",
         "no-param-reassign": "off",
         "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
