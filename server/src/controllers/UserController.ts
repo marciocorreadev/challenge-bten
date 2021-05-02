@@ -6,11 +6,12 @@ import { Request, Response } from 'express';
 import { DeleteResult, UpdateResult } from 'typeorm';
 
 export default class UserController {
-
   async getUsers({ query: { limit = '10', skip = '0', keyword = '' } }: Request, response: Response) {
     try {
       const [data, total] = await UserService.getUsers(Number(skip), Number(limit), String(keyword));
-      return response.status(200).json({ data, count: data.length, limit, skip, total });
+      return response.status(200).json({
+        data, count: data.length, limit, skip, total,
+      });
     } catch (error) {
       throw new AppError(error.message, 500);
     }
@@ -20,11 +21,10 @@ export default class UserController {
     try {
       if (!id) return response.status(400).json({ error: 'UserId is missing' });
 
-      const user = <User>await UserService.getUser(id);
+      const user = <User> await UserService.getUser(id);
       if (!user) return response.status(404).json({ error: 'User not found' });
 
       return response.status(200).json(user);
-
     } catch (error) {
       throw new AppError(error.message, 500);
     }
@@ -38,7 +38,7 @@ export default class UserController {
     }
 
     try {
-      const createUser = <User>await UserService.addUser(user);
+      const createUser = <User> await UserService.addUser(user);
       return response.status(201).json(createUser);
     } catch (error) {
       throw new AppError(error.message, 500);
@@ -49,8 +49,8 @@ export default class UserController {
     try {
       if (!id) return response.status(400).json({ error: 'UserId is missing' });
 
-      let user = <User>await UserService.getUser(id);
-      if (!user) throw new Error("Student not exists!");
+      let user = <User> await UserService.getUser(id);
+      if (!user) throw new Error('Student not exists!');
 
       user = { ...user, ...body, updatedAt: new Date() };
       await userValidate(user);
@@ -60,9 +60,8 @@ export default class UserController {
 
       const updatedUser: User = await UserService.getUser(id);
       return response.status(200).json(updatedUser);
-
     } catch (error) {
-      throw new AppError(error.message)
+      throw new AppError(error.message);
     }
   }
 
@@ -72,9 +71,8 @@ export default class UserController {
 
       const deleteResult: DeleteResult = await UserService.deleteUser(id);
       return resposne.status(200).json(deleteResult);
-
     } catch (error) {
-      throw new AppError(error.message, 500)
+      throw new AppError(error.message, 500);
     }
   }
 }

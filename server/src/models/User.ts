@@ -1,5 +1,7 @@
-import { Entity, Column, CreateDateColumn, PrimaryColumn, UpdateDateColumn } from 'typeorm'
-import { v4 as uuid } from 'uuid'
+import {
+  Entity, Column, CreateDateColumn, PrimaryColumn, UpdateDateColumn,
+} from 'typeorm';
+import { v4 as uuid } from 'uuid';
 
 @Entity('users')
 export default class User {
@@ -18,14 +20,14 @@ export default class User {
   @Column('double precision')
   height: number;
 
-  @Column({ type: "timestamp" })
+  @Column({ type: 'timestamp' })
   age: Date;
 
-  @CreateDateColumn({ type: "timestamp", default: 'NOW()' })
+  @CreateDateColumn({ type: 'timestamp', default: 'NOW()' })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: "timestamp", onUpdate: 'NOW()' })
+  @UpdateDateColumn({ type: 'timestamp', onUpdate: 'NOW()' })
   updatedAt: Date;
 
-  constructor() { if (!this.id) this.id = uuid() }
+  constructor() { if (!this.id) this.id = uuid(); }
 }
