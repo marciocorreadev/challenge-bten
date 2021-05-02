@@ -6,6 +6,8 @@ import User from '../models/User';
 
 const user = {
   homeTeam: 'Teste',
+  email: 'e@e.com',
+  password: '123456',
   name: 'Márcio',
   height: 85,
   age: new Date(),
@@ -25,6 +27,7 @@ describe('Users', () => {
     expect(response.status).toBe(201);
     userCreated = response.body;
     expect(userCreated.name).toBe(user.name);
+    expect(userCreated.email).toBe(user.email);
     expect(userCreated.homeTeam).toBe(user.homeTeam);
     expect(userCreated.height).toBe(user.height);
   });
@@ -33,6 +36,7 @@ describe('Users', () => {
     const response = await request(app).get(`/user/${userCreated.id}`);
     expect(response.status).toBe(200);
     expect(response.body.name).toBe(userCreated.name);
+    expect(userCreated.email).toBe(user.email);
     expect(response.body.homeTeam).toBe(userCreated.homeTeam);
     expect(response.body.height).toBe(userCreated.height);
   });
@@ -51,6 +55,7 @@ describe('Users', () => {
     const response = await request(app).put(`/user/${userCreated.id}`).send(updateUser);
     expect(response.status).toBe(200);
     expect(response.body.name).toBe(updateUser.name);
+    expect(userCreated.email).toBe(user.email);
     expect(response.body.homeTeam).toBe(userCreated.homeTeam);
     expect(response.body.height).toBe(userCreated.height);
   });
