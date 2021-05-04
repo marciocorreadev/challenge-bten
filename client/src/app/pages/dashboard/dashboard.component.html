@@ -1,1 +1,20 @@
-<p>dashboard works!</p>
+<nb-layout>
+
+    <nb-layout-header fixed>
+        <nb-actions class="left">
+            <nb-action> <button type="button" nbButton hero status="success" (click)="logout();">
+                    Sair
+                </button></nb-action>
+        </nb-actions>
+    </nb-layout-header>
+
+    <nb-layout-column>
+        <nb-card style="width: 600px;" class="mx-auto">
+            <nb-card-header>Hello World</nb-card-header>
+            <nb-card-body>
+                <div id="pipe" style="height: 400px;"></div>
+            </nb-card-body>
+        </nb-card>
+
+    </nb-layout-column>
+</nb-layout>
