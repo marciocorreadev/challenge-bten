@@ -12,57 +12,80 @@
                 <nb-card>
                     <nb-card-body>
 
-                        <form>
+                        <form [formGroup]="formulario">
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
                                     <label for="inputPassword4">Nome</label>
                                     <nb-form-field>
-                                        <input type="text" nbInput>
+                                        <input type="text" [class.border-danger]="campoInvalido('name')" nbInput formControlName="name" [required]="true">
                                     </nb-form-field>
-                                  </div>
-                              <div class="form-group col-sm-6">
-                                <label for="inputEmail4">Email</label>
-                                <nb-form-field>
-                                    <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
-                                    <input type="text" nbInput>
-                                </nb-form-field>
-                              </div>
-                              <div class="form-group col-sm-6">
-                                <label for="inputPassword4">Password</label>
-                                <nb-form-field>
-                                    <input type="password" nbInput>
-                                </nb-form-field>
-                              </div>
-                              <div class="form-group col-sm-6">
-                                <label for="inputPassword4">Time</label>
-                                <nb-form-field>
-                                    <input type="text" nbInput>
-                                </nb-form-field>
-                              </div>
-                              <div class="form-group col-sm-6">
-                                <label for="inputPassword4">Peso</label>
-                                <nb-form-field>
-                                    <input type="text" nbInput>
-                                </nb-form-field>
-                              </div>
-                              <div class="form-group col-sm-6">
-                                <label for="inputPassword4">Idade</label>
-                                <nb-form-field>
-                                    <input type="text" nbInput>
-                                </nb-form-field>
-                              </div>
+                                    <span class="text-danger" *ngIf="campoInvalido('name')"> Campo inválido!<nb-icon
+                                            icon="alert-triangle-outline"></nb-icon>
+                                    </span>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="inputEmail4">Email</label>
+                                    <nb-form-field>
+                                        <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
+                                        <input type="text" nbInput formControlName="email" [class.border-danger]="campoInvalido('email')">
+                                    </nb-form-field>
+                                    <span class="text-danger" *ngIf="campoInvalido('email')"> Campo inválido!<nb-icon
+                                        icon="alert-triangle-outline"></nb-icon>
+                                </span>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="inputPassword4">Password</label>
+                                    <nb-form-field>
+                                        <input type="password" nbInput formControlName="password" [class.border-danger]="campoInvalido('password')">
+                                    </nb-form-field>
+                                    <span class="text-danger" *ngIf="campoInvalido('password')"> Campo inválido!<nb-icon
+                                        icon="alert-triangle-outline"></nb-icon>
+                                </span>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="inputPassword4">Time</label>
+                                    <nb-form-field>
+                                        <input type="text" nbInput formControlName="homeTeam" [class.border-danger]="campoInvalido('homeTeam')">
+                                    </nb-form-field>
+                                    <span class="text-danger" *ngIf="campoInvalido('homeTeam')"> Campo inválido!<nb-icon
+                                        icon="alert-triangle-outline"></nb-icon>
+                                </span>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="inputPassword4">Altura</label>
+                                    <nb-form-field>
+                                        <input type="number" nbInput formControlName="height" [class.border-danger]="campoInvalido('height')">
+                                    </nb-form-field>
+                                    <span class="text-danger" *ngIf="campoInvalido('height')"> Campo inválido!<nb-icon
+                                        icon="alert-triangle-outline"></nb-icon>
+                                </span>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="inputPassword4" [class.border-danger]="campoInvalido('age')">Idade</label>
+                                    <nb-form-field>
+                                        <input nbInput placeholder="Escolha a data" [nbDatepicker]="dateTimePicker" formControlName="age" [class.border-danger]="campoInvalido('age')">
+                                        <nb-datepicker #dateTimePicker format="dd/MM/yyyy"></nb-datepicker>
+                                    </nb-form-field>
+                                    <span class="text-danger" *ngIf="campoInvalido('age')"> Campo inválido!<nb-icon
+                                        icon="alert-triangle-outline"></nb-icon>
+                                </span>
+                                </div>
                             </div>
-                            
+
                             <div class="m-auto py-3 text-center">
-                                <button nbButton hero status="primary" size="large"> <nb-icon icon="plus"></nb-icon> Cadastre-se</button>
+                                <button nbButton hero status="primary" size="large" (click)="cadastrar()">
+                                    <nb-icon icon="plus"></nb-icon> Cadastre-se
+                                </button>
                             </div>
-                          </form>
+                        </form>
                     </nb-card-body>
                 </nb-card>
 
 
                 <div class="mx-auto py-4 text-center" (click)="login()">
-                    <button nbButton hero status="success"> <nb-icon icon="star"></nb-icon> Entrar</button>
+                    <button nbButton hero status="success">
+                        <nb-icon icon="star"></nb-icon> Entrar
+                    </button>
                 </div>
             </div>
 

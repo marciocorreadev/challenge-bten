@@ -6,13 +6,10 @@ import { Router } from '@angular/router';
   template: '<router-outlet></router-outlet>',
 })
 export class AppComponent {
-  tokenId: string | null = null;
-
   constructor(
     private router: Router,
   ) {
     const token: string | null = localStorage.getItem('TOKEN');
-    if (token) this.tokenId = JSON.parse(token);
-    else this.router.navigateByUrl('login');
+    if (!token) this.router.navigateByUrl('login');
   }
 }

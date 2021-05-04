@@ -8,9 +8,11 @@ import { LoginComponent } from './pages/login/login.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthService } from './providers/auth.service';
-import { NbThemeModule, NbLayoutModule, NbInputModule, NbCardModule, NbFormFieldModule, NbIconModule, NbButtonModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbInputModule, NbCardModule, NbFormFieldModule, NbIconModule, NbButtonModule, NbDatepickerModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,10 +22,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DashboardComponent,
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbEvaIconsModule,
     NgbModule,
@@ -31,7 +32,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NbInputModule,
     NbFormFieldModule,
     NbIconModule,
-    NbButtonModule
+    NbButtonModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NbDatepickerModule,
+    NbDatepickerModule.forRoot(),
+    NbThemeModule.forRoot({ name: 'default' }),
   ],
   providers: [
     AuthService

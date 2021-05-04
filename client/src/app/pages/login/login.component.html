@@ -11,14 +11,14 @@
 
                 <nb-card>
                     <nb-card-body>
-                        <form>
+                        <form (keydown.enter)="$event.preventDefault()" >
 
                             <div class="form-group center-center">
                                 <div class="w-100 text-center p-3">
                                     <label for="formGroupExampleInput2" class="m-auto pb-2">E-mail</label>
                                     <nb-form-field class="mx-auto">
                                         <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
-                                        <input type="text" nbInput>
+                                        <input type="text" nbInput [(ngModel)]="email" placeholder="email@email.com" [ngModelOptions]="{standalone: true}">
                                     </nb-form-field>
                                 </div>
                             </div>
@@ -28,7 +28,7 @@
 
                                     <label for="formGroupExampleInput" class="text-center">Senha</label>
                                     <nb-form-field class="m-auto">
-                                        <input type="{{showPassword ? 'text': 'password'}}" nbInput>
+                                        <input type="{{showPassword ? 'text': 'password'}}" nbInput [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="********">
                                         <span nbSuffix nbButton ghost (click)="toggleShowPassword()">
                                             <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
                                                 pack="eva"
@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="mx-auto mx-3 px-3 text-center">
-                                <button nbButton hero status="success" size="large">
+                                <button type="button" nbButton hero status="success" size="large" (click)="login();">
                                     <nb-icon icon="star"></nb-icon> Entrar
                                 </button>
                             </div>
