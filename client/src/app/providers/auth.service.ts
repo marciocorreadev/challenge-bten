@@ -34,7 +34,7 @@ export class AuthService {
 
   }
   
-  public cadastrar(user: User) {
+  public register(user: User) {
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

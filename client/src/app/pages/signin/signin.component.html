@@ -17,9 +17,9 @@
                                 <div class="form-group col-sm-6">
                                     <label for="inputPassword4">Nome</label>
                                     <nb-form-field>
-                                        <input type="text" [class.border-danger]="campoInvalido('name')" nbInput formControlName="name" [required]="true">
+                                        <input type="text" [class.border-danger]="invalidField('name')" nbInput formControlName="name" [required]="true">
                                     </nb-form-field>
-                                    <span class="text-danger" *ngIf="campoInvalido('name')"> Campo inválido!<nb-icon
+                                    <span class="text-danger" *ngIf="invalidField('name')"> Campo inválido!<nb-icon
                                             icon="alert-triangle-outline"></nb-icon>
                                     </span>
                                 </div>
@@ -27,53 +27,53 @@
                                     <label for="inputEmail4">Email</label>
                                     <nb-form-field>
                                         <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
-                                        <input type="text" nbInput formControlName="email" [class.border-danger]="campoInvalido('email')">
+                                        <input type="text" nbInput formControlName="email" [class.border-danger]="invalidField('email')">
                                     </nb-form-field>
-                                    <span class="text-danger" *ngIf="campoInvalido('email')"> Campo inválido!<nb-icon
+                                    <span class="text-danger" *ngIf="invalidField('email')"> Campo inválido!<nb-icon
                                         icon="alert-triangle-outline"></nb-icon>
                                 </span>
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="inputPassword4">Password</label>
                                     <nb-form-field>
-                                        <input type="password" nbInput formControlName="password" [class.border-danger]="campoInvalido('password')">
+                                        <input type="password" nbInput formControlName="password" [class.border-danger]="invalidField('password')">
                                     </nb-form-field>
-                                    <span class="text-danger" *ngIf="campoInvalido('password')"> Campo inválido!<nb-icon
+                                    <span class="text-danger" *ngIf="invalidField('password')"> Campo inválido!<nb-icon
                                         icon="alert-triangle-outline"></nb-icon>
                                 </span>
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="inputPassword4">Time</label>
                                     <nb-form-field>
-                                        <input type="text" nbInput formControlName="homeTeam" [class.border-danger]="campoInvalido('homeTeam')">
+                                        <input type="text" nbInput formControlName="homeTeam" [class.border-danger]="invalidField('homeTeam')">
                                     </nb-form-field>
-                                    <span class="text-danger" *ngIf="campoInvalido('homeTeam')"> Campo inválido!<nb-icon
+                                    <span class="text-danger" *ngIf="invalidField('homeTeam')"> Campo inválido!<nb-icon
                                         icon="alert-triangle-outline"></nb-icon>
                                 </span>
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="inputPassword4">Altura</label>
                                     <nb-form-field>
-                                        <input type="number" nbInput formControlName="height" [class.border-danger]="campoInvalido('height')">
+                                        <input type="number" nbInput formControlName="height" [class.border-danger]="invalidField('height')">
                                     </nb-form-field>
-                                    <span class="text-danger" *ngIf="campoInvalido('height')"> Campo inválido!<nb-icon
+                                    <span class="text-danger" *ngIf="invalidField('height')"> Campo inválido!<nb-icon
                                         icon="alert-triangle-outline"></nb-icon>
                                 </span>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label for="inputPassword4" [class.border-danger]="campoInvalido('age')">Idade</label>
+                                    <label for="inputPassword4" [class.border-danger]="invalidField('age')">Idade</label>
                                     <nb-form-field>
-                                        <input nbInput placeholder="Escolha a data" [nbDatepicker]="dateTimePicker" formControlName="age" [class.border-danger]="campoInvalido('age')">
+                                        <input nbInput placeholder="Escolha a data" [nbDatepicker]="dateTimePicker" formControlName="age" [class.border-danger]="invalidField('age')">
                                         <nb-datepicker #dateTimePicker format="dd/MM/yyyy"></nb-datepicker>
                                     </nb-form-field>
-                                    <span class="text-danger" *ngIf="campoInvalido('age')"> Campo inválido!<nb-icon
+                                    <span class="text-danger" *ngIf="invalidField('age')"> Campo inválido!<nb-icon
                                         icon="alert-triangle-outline"></nb-icon>
                                 </span>
                                 </div>
                             </div>
 
                             <div class="m-auto py-3 text-center">
-                                <button nbButton hero status="primary" size="large" (click)="cadastrar()">
+                                <button nbButton hero status="primary" size="large" (click)="register()">
                                     <nb-icon icon="plus"></nb-icon> Cadastre-se
                                 </button>
                             </div>

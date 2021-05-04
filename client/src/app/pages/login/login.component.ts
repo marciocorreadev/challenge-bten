@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   ): void {
   }
 
-  cadastrar() {
+  register() {
     this.router.navigateByUrl('signin');
   }
 
@@ -40,11 +40,11 @@ export class LoginComponent implements OnInit {
       const user: any = await this.authService.login(this.email, this.password)
       localStorage.setItem('TOKEN', JSON.stringify(user.token));
       this.router.navigateByUrl('/');
-      
+      swal.close()
     } catch (error) {
       swal.fire('', 'Falha ao realizar login. Tente novamente!')
     }
-    swal.close()
+    swal.hideLoading()
   }
 
   showPassword = true;

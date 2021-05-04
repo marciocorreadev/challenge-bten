@@ -38,11 +38,11 @@ export class SigninComponent implements OnInit {
     this.router.navigateByUrl('login');
   }
 
-  campoInvalido(name: string){
+  invalidField(name: string){
     return this.formularioEnviado && this.formulario.get(name)?.status == 'INVALID'
   }
 
-  async cadastrar(): Promise<any> {
+  async register(): Promise<any> {
     this.formularioEnviado = true;
 
     swal.showLoading()
@@ -50,14 +50,14 @@ export class SigninComponent implements OnInit {
 
       if(this.formulario.status == 'INVALID')  return swal.fire('', 'Campos inválidos!');
 
-      const user: any = await this.authService.cadastrar(this.formulario.value);
+      const user: any = await this.authService.register(this.formulario.value);
 
       localStorage.setItem('TOKEN', JSON.stringify(user.token));
       this.router.navigateByUrl('/');
-      
+      swal.close()
     } catch (error) {
       swal.fire('', 'Falha ao realizar login. Tente novamente!')
     }
-    swal.close()
+    swal.hideLoading()
   }
 }
