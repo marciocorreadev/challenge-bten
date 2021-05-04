@@ -7,16 +7,17 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { SigninService } from './pages/signin/signin.service';
-import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { AuthService } from './providers/auth.service';
+import { NbThemeModule, NbLayoutModule, NbInputModule, NbCardModule, NbFormFieldModule, NbIconModule, NbButtonModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SigninComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,10 +25,16 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
-    NbEvaIconsModule
+    NbEvaIconsModule,
+    NgbModule,
+    NbCardModule,
+    NbInputModule,
+    NbFormFieldModule,
+    NbIconModule,
+    NbButtonModule
   ],
   providers: [
-    SigninService
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

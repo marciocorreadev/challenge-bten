@@ -1,0 +1,14 @@
+.login {
+    height: 50vh;
+  }
+
+  nb-card{
+      max-width: 400px;
+      margin: auto;
+  }
+
+  @media screen and (max-width: 780px) {
+    .login {
+        display: none;
+    }
+}

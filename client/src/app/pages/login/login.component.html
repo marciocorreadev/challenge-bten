@@ -1,1 +1,66 @@
-<p>login works!</p>
+<nb-layout>
+    <nb-layout-column>
+
+        <div class="row h-100 align-items-center">
+            <div class="col-md-6 col-lg-5 align-items-center">
+
+                <div class="text-center my-3">
+                    <img class="logo" src="assets/logo.png" />
+                    <h3>Bem-vindo</h3>
+                </div>
+
+                <nb-card>
+                    <nb-card-body>
+                        <form>
+
+                            <div class="form-group center-center">
+                                <div class="w-100 text-center p-3">
+                                    <label for="formGroupExampleInput2" class="m-auto pb-2">E-mail</label>
+                                    <nb-form-field class="mx-auto">
+                                        <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
+                                        <input type="text" nbInput>
+                                    </nb-form-field>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="w-100 text-center p-2">
+
+                                    <label for="formGroupExampleInput" class="text-center">Senha</label>
+                                    <nb-form-field class="m-auto">
+                                        <input type="{{showPassword ? 'text': 'password'}}" nbInput>
+                                        <span nbSuffix nbButton ghost (click)="toggleShowPassword()">
+                                            <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                                                pack="eva"
+                                                [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
+                                            </nb-icon>
+                                        </span>
+                                    </nb-form-field>
+                                </div>
+                            </div>
+
+                            <div class="mx-auto mx-3 px-3 text-center">
+                                <button nbButton hero status="success" size="large">
+                                    <nb-icon icon="star"></nb-icon> Entrar
+                                </button>
+                            </div>
+                        </form>
+                    </nb-card-body>
+                </nb-card>
+
+                <div class="mx-auto py-4 text-center">
+
+                    <button nbButton hero status="primary" (click)="cadastrar()">
+                        <nb-icon icon="plus"></nb-icon> Cadastre-se
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="col-0 col-md-6 col-lg-7 text-center ">
+                <img class="login mx-auto " src="assets/login.svg" />
+            </div>
+        </div>
+
+    </nb-layout-column>
+</nb-layout>
